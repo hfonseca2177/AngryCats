@@ -9,6 +9,9 @@ https://opengameart.org/content/blue-land-monster-sprites
 https://opengameart.org/content/cute-clouds-game-ornament
 https://opengameart.org/content/glow-arrow
 https://opengameart.org/content/glow-circle
-
+https://bevouliin.com/cute-little-boy-free-2d-game-asset/
+ 
 My Own
 Fog
+
+Sounds from https://freesound.org/
