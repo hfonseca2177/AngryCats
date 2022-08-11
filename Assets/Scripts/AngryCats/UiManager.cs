@@ -20,9 +20,9 @@ namespace AngryCats
             GameManager.OnScoreChange -= UpdateScore;
         }
 
-        private void UpdateScore(int score)
+        private void UpdateScore()
         {   
-            scoreText.SetText(score+"");
+            scoreText.SetText(GameManager.Instance.Score+"");
         }
         
     }

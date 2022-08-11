@@ -11,7 +11,7 @@ namespace AngryCats
                         
         public static GameManager Instance { get; private set; }
 
-        public static Action<int> OnScoreChange;
+        public static Action OnScoreChange;
         
 
         private int _score;
@@ -47,7 +47,7 @@ namespace AngryCats
         private void ComputeHumanHug(int score)
         {
             _score += score;
-            OnScoreChange.Invoke(_score);
+            OnScoreChange.Invoke();
         }
 
         /**
@@ -56,7 +56,7 @@ namespace AngryCats
         private void ComputeEnemyDeath(int score)
         {
             _score += score;
-            OnScoreChange.Invoke(_score);
+            OnScoreChange.Invoke();
         }
 
     }
