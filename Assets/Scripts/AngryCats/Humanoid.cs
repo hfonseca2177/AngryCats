@@ -8,7 +8,11 @@ namespace AngryCats
      */
     public class Humanoid : MonoBehaviour
     {
+        [SerializeField] private int scoreValue;
         private Collider2D _collider2D;
+
+        public static Action<int> OnHumanHug;
+        
 
         private void Start()
         {
@@ -25,6 +29,7 @@ namespace AngryCats
                 PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
                 playerController.OnHitHumanoid(gameObject);
                 _collider2D.enabled = false;
+                OnHumanHug.Invoke(scoreValue);
             }
         }
     }

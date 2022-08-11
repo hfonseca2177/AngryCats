@@ -10,6 +10,8 @@ namespace AngryCats
         void OnPlayerCollision(Collision2D collision);
         void OnCrateCollision(Collision2D collision);
         void OnEnemyCollision(Collision2D collision);
+
+        int GetScoreValue();
         
     }    
 }

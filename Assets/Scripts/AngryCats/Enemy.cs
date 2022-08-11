@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,12 +10,16 @@ namespace AngryCats
     public class Enemy : MonoBehaviour, IEnemy
     {
         [Header("Monster Death V-SFX")]
-        [SerializeField] private AudioClip deathSound;
-        [SerializeField] private ParticleSystem deathPS;
+        [SerializeField] protected AudioClip deathSound;
+        [SerializeField] protected ParticleSystem deathPS;
+        [Header("Score value by killing this enemy")]
+        [SerializeField] protected int scoreValue = 10;
+
+        public static Action<int> OnDeath;
 
         private AudioSource _audioSource;
 
-        private void Awake()
+        protected void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
         }
@@ -68,6 +73,7 @@ namespace AngryCats
 
         public void DestroyEnemy()
         {
+            OnDeath.Invoke(GetScoreValue());
             DeathVsFX();
             StartCoroutine(DestroyObjectWait());
         }
@@ -75,7 +81,7 @@ namespace AngryCats
         /**
          * Visual and sound Death effects are played
          */
-        private void DeathVsFX()
+        protected void DeathVsFX()
         {
             Instantiate(deathPS, transform.position, Quaternion.identity);
             _audioSource.PlayOneShot(deathSound, 1); 
@@ -84,10 +90,15 @@ namespace AngryCats
         /**
          * Wait few seconds before destroy the object in order to the audio has entire duration played
          */
-        private IEnumerator DestroyObjectWait()
+        protected IEnumerator DestroyObjectWait()
         {
             yield return new WaitForSeconds(1.0f);
             Destroy(gameObject);
+        }
+
+        public virtual int GetScoreValue()
+        {
+            return scoreValue;
         }
     }
 }
